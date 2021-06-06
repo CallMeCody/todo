@@ -92,3 +92,19 @@ body, html {
     }
 
 }
+
+.blockquote-footer {
+  text-align: right;
+}
+
+.exit-button {
+  display: flex;
+  align-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+  background-color: rgb(134, 134, 133);
+}
+
+.mr-auto {
+  padding: 10px;
+}
