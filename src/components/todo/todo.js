@@ -16,13 +16,12 @@ function ToDo() {
   )
 
   const addItem = async (item) => {
-    console.log(item)
-    item._id = Math.random();
     item.complete = false;
     let url = `https://api-js401.herokuapp.com/api/v1/todo/`;
-    let fixed = await axios.post(url, item)
-    console.log(fixed);
-    setList([...list, item])
+    await axios.post(url, item)
+    let newList = list.map(listItem => listItem._id === item._id ? item : listItem);
+    setList(newList);
+    refetch();
   };
 
   const toggleComplete = async id => {
@@ -41,6 +40,18 @@ function ToDo() {
     }
 
   };
+
+  const deleteItem = async id => {
+    let item = list.filter(i => i._id === id)[0] || {};
+
+    if(item._id) {
+      let url =  `https://api-js401.herokuapp.com/api/v1/todo/${id}`;
+      let deletedItem = await axios.delete(url, item)
+      let updatedList = list.map(listItem => listItem.id === item._id ? item : listItem);
+      setList(updatedList);
+      refetch()
+    }
+  }
 
   useEffect(() => {
     if(!loading) {
@@ -69,6 +80,7 @@ function ToDo() {
           <TodoList
             list={list}
             handleComplete={toggleComplete}
+            handleDelete={deleteItem}
           />
         </Col>
 
