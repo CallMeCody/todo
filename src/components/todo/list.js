@@ -4,13 +4,13 @@ import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 
 function TodoList(props) {
-
+  
   return (
     <ul>
       {props.list.map(item => (
       <Card id="list" bg="light" className={`complete-${item.complete.toString()}`} onClick={() => props.handleComplete(item._id)}
       key={item._id}>
-        <Toast.Header className="exit-button" key={item._id}>
+        <Toast.Header className="exit-button" key={item._id} onClick={() => props.handleDelete(item._id)}>
           <Badge
             pillstyles={StyleSheet.pill}
             variant={item.complete ? 'danger' : 'success'}
