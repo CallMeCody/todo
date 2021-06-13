@@ -1,3 +1,6 @@
+## Deployment
+[deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
 ## Available Scripts
 
 In the project directory, you can run:
